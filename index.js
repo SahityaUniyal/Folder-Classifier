@@ -27,8 +27,15 @@ function moveFile(oldPath, newPath) {
     }
 }
 
+// Getting target path where the classification needs to be performed
+let targetPath;
+if (process.argv[2]) {
+    targetPath = path.join(__dirname, process.argv[2]);
+} else {
+    targetPath = __dirname;
+}
 // Get the list of files in the current directory
-const files = getFiles(__dirname);
+const files = getFiles(targetPath);
 // Iterate over each file
 for (const fileName of files) {
     // Get the file extension in lowercase
@@ -36,7 +43,7 @@ for (const fileName of files) {
     // Exclude files with 'js' extension
     if (extension && fileName !== 'index.js') {
         // Create a directory path based on the file extension
-        const folderPath = path.join(__dirname, extension);
+        const folderPath = path.join(targetPath, extension);
 
         // Create the directory if it doesn't exist
         if (!fs.existsSync(folderPath)) {
@@ -44,7 +51,7 @@ for (const fileName of files) {
         }
 
         // Set the old and new file paths
-        const oldFilePath = path.join(__dirname, fileName);
+        const oldFilePath = path.join(targetPath, fileName);
         const newFilePath = path.join(folderPath, fileName);
         // Move the file to the appropriate directory
         moveFile(oldFilePath, newFilePath);
