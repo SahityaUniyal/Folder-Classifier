@@ -2,13 +2,24 @@
 
 ## Description
 
-Folder-Classifier is a simple utility that organizes files based on their extensions. It also handles the creation of folders if they don't exist.
+This Node.js script allows you to classify files in a directory based on their extensions and move them to corresponding subdirectories.
 
 ## Usage
 
-1. Place the 'index.js' file in the same folder as the one containing all the files you want to organize.
-2. Open a command prompt (cmd) in the directory where the 'index.js' file is located.
-3. Run the following command:
-
+1. Either place the 'index' in the same folder you want to classify the files
 ```bash
-node index
+node index.js
+```
+2. You can also provide the target-directory path realtive to the possition of the 'index' file
+Run the script from the command line, optionally providing the target directory:
+```bash
+node index.js [target-directory]
+```
+
+## Example
+```bash
+node index.js
+```
+```bash
+node index.js './target'
+```
